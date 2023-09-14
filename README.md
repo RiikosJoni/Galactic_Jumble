@@ -6,12 +6,12 @@ The intergalactic group called the Buckthorn Planet Destruction Group (BPDG) has
 Grab your spaceship and prevent that!
 
 ## Features:
--Multiple unbalanced abilities!
--Semi-random and annoying enemy generation!
--Challenging(?) Bosses!
--Multiple Difficulties!
+- Multiple unbalanced abilities!
+- Semi-random and annoying enemy generation!
+- Challenging(?) Bosses!
+- Multiple Difficulties!
 
 ## Controls:
-Arrow Keys - Movement
-Z - Shoot
-X - Ability
+- Arrow Keys - Movement
+- Z - Shoot
+- X - Ability
