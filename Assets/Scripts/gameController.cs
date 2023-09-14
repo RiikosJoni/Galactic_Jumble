@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class gameController : MonoBehaviour
@@ -10,12 +11,13 @@ public class gameController : MonoBehaviour
     public bool isWaveActive = false;
 
     public enemySpawnerScript enemySpawner;
+    public textManager textManager;
 
     public bool isPaused = false;
 
     void Start()
     {
-        Debug.Log("Scene initaliazied"); //There might be typos it's midninght right now
+        Debug.Log("Scene initaliazied");
 
 }
 
@@ -29,7 +31,7 @@ public class gameController : MonoBehaviour
 
         if (Input.GetKeyDown("y"))
         {
-            Wave++;
+            addWave();
             isWaveActive = true;
             Debug.Log("Wave " + Wave + " started!");
 
@@ -38,5 +40,30 @@ public class gameController : MonoBehaviour
                 StartCoroutine(enemySpawner.EnemySpawn());
             }
         }
+
+        if (Input.GetKeyDown("b"))
+        {
+            Wave = 10000;
+            isWaveActive = true;
+            Debug.Log("Wave " + Wave + " started!");
+
+            if (enemySpawner != null)
+            {
+                StartCoroutine(enemySpawner.EnemySpawn());
+            }
+        }
+    }
+
+    public void addWave()
+    {
+        Wave++;
+        int waveInt = (int)Mathf.Round(Wave);
+        textManager.GetComponent<textManager>().CounterRefresh();
+    }
+
+    public void addScore(int addedScore)
+    {
+        Score += addedScore;
+        textManager.GetComponent<textManager>().CounterRefresh();
     }
 }

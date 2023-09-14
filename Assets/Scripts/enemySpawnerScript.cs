@@ -8,8 +8,9 @@ public class enemySpawnerScript : MonoBehaviour
     public gameController gameController;
 
     //Each entry in spawnlist corresponds to a wave. The numbers are the entries in enemylist (eq 0,0 = satellite_basic, satellite_basic)
-    string[] enemyList = { "Satellite_Basic", "Satellite_Bullet", "Satellite_Aim", "Satellite_Burst", "Satellite_Burst_Aim", "Satellite_Line" };
-    string[] spawnList = { "0,0,0,0", "0b,0,0b", "0b,0,0bj,0,0k", "0m,0n,0or,0p,0q" };
+    //0 - Satellite, 1 - Satellite Bullet, 2 - Satellite Aim, 3 - Satellite Burst, 4 - Satellite Burst Aim, 5 - Satellite Line, 6 - Satellite Drop, 7 - Satellite Armored, 8 - Satellite Spike, 9 - Satellite Napalm
+    string[] enemyList = { "Satellite_Basic", "Satellite_Bullet", "Satellite_Aim", "Satellite_Burst", "Satellite_Burst_Aim", "Satellite_Line", "Satellite_Drop" };
+    string[] spawnList = { "0,0,0,0", "0b,0,0b", "0b,0,6bj,0,0k", "0m,6n,6or,6p,6q" };
 
     [SerializeField] public int EnemyCooldown = 100;
     [SerializeField] public int EnemyMultiplier = 1;
@@ -21,8 +22,17 @@ public class enemySpawnerScript : MonoBehaviour
     {
         while (gameController.isWaveActive == true && gameController.isPaused == false)
         {
-            string latestSpawnList = spawnList[gameController.Wave - 1];
-            Debug.Log("Current wave's spawnlist: " + latestSpawnList);
+            string latestSpawnList;
+
+            if (gameController.Wave - 1 < spawnList.Length)
+            {
+                latestSpawnList = spawnList[gameController.Wave - 1];
+                Debug.Log("Current wave's spawnlist: " + latestSpawnList);
+            }
+            else
+            {
+                latestSpawnList = "0,0,0,0,0j,0k,0l,6l,0l"; //placeholder wave
+            }
 
             string[] enemyListSplit = latestSpawnList.Split(',');
             Debug.Log("Enemies in this wave: " + enemyListSplit.Length);
@@ -59,7 +69,7 @@ public class enemySpawnerScript : MonoBehaviour
                 else if (parsedSpawnSetting.Contains("r")) { SpawnPos += new Vector3(0, 2, 0); } //Spawn farther away from screen
 
                 Debug.Log("The enemy to spawn is: " + enemyList[parsedEnemyNum]); //Spawning enemy
-                if (Resources.Load(enemyList[parsedEnemyNum]))
+                if (Resources.Load("Enemies/" + enemyList[parsedEnemyNum]))
                 {
                     Debug.Log(enemyList[parsedEnemyNum] + ".prefab was found!");
                     for (int m = 0; m < EnemyMultiplier; m++)
@@ -68,7 +78,7 @@ public class enemySpawnerScript : MonoBehaviour
                         {
                             SpawnPos += new Vector3(UnityEngine.Random.Range(-1.2f, 1.2f), 0, 0);
                         }
-                        Instantiate(Resources.Load(enemyList[parsedEnemyNum]), SpawnPos, Quaternion.identity);
+                        Instantiate(Resources.Load("Enemies/" + enemyList[parsedEnemyNum]), SpawnPos, Quaternion.identity);
                     }
                 }
                 else { Debug.Log(enemyList[parsedEnemyNum] + ".prefab was not found!"); }
@@ -77,6 +87,7 @@ public class enemySpawnerScript : MonoBehaviour
                 EnemyCooldown = 100;
 
                 PosModified = false;
+                EnemyMultiplier = 1;
             }
 
             gameController.isWaveActive = false;

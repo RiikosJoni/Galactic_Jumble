@@ -12,6 +12,8 @@ public class satelliteEnemyScript : MonoBehaviour
 
     public string satelliteType = "null";
     public GameObject myBullet;
+    public int BulletCooldown = 100;
+    [SerializeField] int bulletTimer = 0;
 
     void Start()
     {
@@ -26,21 +28,37 @@ public class satelliteEnemyScript : MonoBehaviour
         if (!controlScript.isPaused)
         {
             //Checking player position and moving
-            playerPos = GameObject.Find("PlayerObject").transform.position.x;
+            if (satelliteType == "Basic")
+            {
+                playerPos = GameObject.Find("PlayerObject").transform.position.x;
 
-            if (playerPos > transform.position.x)
+                if (playerPos > transform.position.x)
+                {
+                    transform.position += new Vector3(moveSpeed / 10, -moveSpeed, 0);
+                }
+                else
+                {
+                    transform.position += new Vector3(-moveSpeed / 10, -moveSpeed, 0);
+                }
+            }else
             {
-                transform.position += new Vector3(moveSpeed / 10, -moveSpeed, 0);
-            }
-            else
-            {
-                transform.position += new Vector3(-moveSpeed / 10, -moveSpeed, 0);
+                transform.position += new Vector3(0, -moveSpeed, 0);
             }
 
             if (transform.position.y < -2)
             {
                 Destroy(gameObject);
             }
+
+            if (satelliteType == "Drop")
+            {
+                if(bulletTimer > BulletCooldown && transform.position.y < 1.25)
+                {
+                    Instantiate(myBullet, transform.position, Quaternion.identity); 
+                    bulletTimer = 0;
+                }
+            }
+            bulletTimer++;
         }
     }
 }
