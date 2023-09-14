@@ -1,4 +1,4 @@
-# Galactic_Jumble
+# Galactic Jumble
 A space shooter/bullet dodging game I made to learn Unity and C#.
 
 ## Story:
