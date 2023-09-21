@@ -104,7 +104,7 @@ MonoBehaviour:
   givenScore: 50
   hp3: {fileID: 21300000, guid: 4dc72b9117399f248a325454d3150137, type: 3}
   hp2: {fileID: 21300000, guid: d348e4b3d9a0ab349af696176e2881ab, type: 3}
-  hp1: {fileID: 21300000, guid: 9ce8ff17a85741540a41270c6becf557, type: 3}
+  hp1: {fileID: 21300000, guid: f5ea119348232fb4fa9f289cd1e4764e, type: 3}
   explosionObject: {fileID: 5073021846197705629, guid: 321777fc5445ce744b00237725658f96, type: 3}
 --- !u!114 &12568868715716792
 MonoBehaviour:
@@ -118,10 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c42233363a4e04cb6c290556628dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.01
+  moveSpeed: 0.007
   satelliteType: Basic
   myBullet: {fileID: 0}
   BulletCooldown: 100
+  bulletTimer: 0
 --- !u!50 &12568868715716790
 Rigidbody2D:
   serializedVersion: 4

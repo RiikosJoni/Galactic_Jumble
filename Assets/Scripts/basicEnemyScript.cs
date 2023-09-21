@@ -26,11 +26,11 @@ public class basicEnemyScript : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().sprite = hp3;
         }
-        else if (health >= maxhealth * 0.33f)
+        else if (health >= maxhealth * 0.34f)
         {
             GetComponent<SpriteRenderer>().sprite = hp2;
         }
-        else if (health < maxhealth * 0.33f && health > 0)
+        else if (health < maxhealth * 0.34f && health > 0)
         {
             GetComponent<SpriteRenderer>().sprite = hp1;
         }

@@ -9,35 +9,32 @@ public class playerSpriteController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!gameController.isPaused)
+        //Friction
+        if (!(Input.GetKey("left") || Input.GetKey("right")))
         {
-            //Friction
-            if (!(Input.GetKey("left") || Input.GetKey("right")))
-            {
-                myRotation = myRotation * 0.90f;
-            }
+            myRotation = myRotation * 0.90f;
+        }
 
-            //Rotation
-            if (Input.GetKey("right"))
-            {
-                myRotation -= 0.1f;
-            }
-            if (Input.GetKey("left"))
-            {
-                myRotation += 0.1f;
-            }
+        //Rotation
+        if (Input.GetKey("right"))
+        {
+            myRotation -= 0.1f;
+        }
+        if (Input.GetKey("left"))
+        {
+            myRotation += 0.1f;
+        }
 
-            transform.eulerAngles = new Vector3(0, 0, myRotation);
+        transform.eulerAngles = new Vector3(0, 0, myRotation);
 
-            //Limiting rotation
-            if (myRotation < -10)
-            {
-                transform.eulerAngles = new Vector3(0, 0, -10);
-            }
-            if (myRotation > 10)
-            {
-                transform.eulerAngles = new Vector3(0, 0, 10);
-            }
+        //Limiting rotation
+        if (myRotation < -10)
+        {
+            transform.eulerAngles = new Vector3(0, 0, -10);
+        }
+        if (myRotation > 10)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 10);
         }
     }
 }

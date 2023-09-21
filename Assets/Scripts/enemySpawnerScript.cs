@@ -20,7 +20,7 @@ public class enemySpawnerScript : MonoBehaviour
 
     public IEnumerator EnemySpawn()
     {
-        while (gameController.isWaveActive == true && gameController.isPaused == false)
+        while (gameController.isWaveActive == true)
         {
             string latestSpawnList;
 

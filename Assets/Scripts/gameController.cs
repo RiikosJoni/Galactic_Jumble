@@ -6,6 +6,13 @@ using UnityEngine;
 
 public class gameController : MonoBehaviour
 {
+    //Difficultíes:
+    //0 - Easy
+    //1 - Normal
+    //2 - Hard
+    //3 - Cool Mode
+    //4 - Impossible
+    public int Difficulty = 2;
     public int Score = 0;
     public int Wave = 0;
     public bool isWaveActive = false;
@@ -25,8 +32,18 @@ public class gameController : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-            if (isPaused) { isPaused = false; } else { isPaused = true; }
+            if (isPaused) { isPaused = false; Time.timeScale = 1; } else { isPaused = true; Time.timeScale = 0; }
             Debug.Log("Pause Toggled: " + isPaused);
+        }
+
+        if (Input.GetKeyDown("o"))
+        {
+            Time.timeScale = Time.timeScale / 2;
+        }
+
+        if (Input.GetKeyDown("p"))
+        {
+            Time.timeScale = Time.timeScale * 2;
         }
 
         if (Input.GetKeyDown("y"))

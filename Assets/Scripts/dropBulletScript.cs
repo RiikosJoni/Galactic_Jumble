@@ -19,12 +19,9 @@ public class dropBulletScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (controlScript.isPaused == false)
+        if (transform.position.y < -2)
         {
-            if (transform.position.y < -2)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 
