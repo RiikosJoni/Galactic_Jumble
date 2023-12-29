@@ -15,3 +15,5 @@ Grab your spaceship and prevent that!
 - Arrow Keys - Movement
 - Z - Shoot
 - X - Ability
+
+##NOTE: This version of Galactic jumble has been cancelled. I'm going to switch to Godot.
