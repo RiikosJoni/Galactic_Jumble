@@ -7,7 +7,7 @@ public class cameraControlScript : MonoBehaviour
     public gameController gameController;
     public GameObject Camera;
     public float shake = 0;
-    public float shakeAmount = 0.01f;
+    public float shakeAmount = 0.003f;
     public float decreaseFactor = 3.0f;
  
     private void FixedUpdate()

@@ -6,16 +6,26 @@ using UnityEngine;
 
 public class gameController : MonoBehaviour
 {
-    //Difficultíes:
-    //0 - Easy
-    //1 - Normal
-    //2 - Hard
-    //3 - Cool Mode
-    //4 - Impossible
+    //List of difficulties: 
+    //	-Cheater's Paradise (0)
+    //		What are you doing here?
+    //	-Baby's First Playthrough (1)
+    //		Really easy. Health spawns more often. No last final boss phase
+    //	-A Quite Regular Experience
+    //		The default difficulty. Not too challenging. (2)
+    //	-Approved by Friedrich Mohs
+    //		Harder enemies and less health pickups. (3)
+    //	-Extremely Unfriendly (4)
+    //      The intended difficulty. Limited max health (3), harder attacks. Gaining extra max health instead decreases ability cooldown
+    //	-Clinically Insane (5)
+    //      Same as Extremely Unfriendly, but multiplied by 10, basically
+    //	-Armageddon Adventure (6?)
+    //      Maybe not
+
     public int Difficulty = 2;
     public int Score = 0;
     public int Wave = 0;
-    public bool isWaveActive = false;
+    public bool isWaveActive = false; //Are enemies currently spawning? Used for between-the waves cutscenes or powerups.
 
     public enemySpawnerScript enemySpawner;
     public textManager textManager;
@@ -46,7 +56,7 @@ public class gameController : MonoBehaviour
             Time.timeScale = Time.timeScale * 2;
         }
 
-        if (Input.GetKeyDown("y"))
+        if (Input.GetKeyDown("y")) //Debug stuff. Adds 1 to wave counter and starts wave.
         {
             addWave();
             isWaveActive = true;
@@ -58,7 +68,7 @@ public class gameController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("b"))
+        if (Input.GetKeyDown("b")) //Debug stuff. Spawns wave 10000.
         {
             Wave = 10000;
             isWaveActive = true;
