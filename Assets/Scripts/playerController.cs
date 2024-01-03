@@ -109,7 +109,7 @@ public class playerController : MonoBehaviour
 
     private void ShootBullet()
     {
-        for (int bulletsFired = 0; bulletsFired < bulletCount; bulletsFired++)
+        for (int bulletsFired = 0; bulletsFired < bulletCount; bulletsFired++) //Changes the shooting offset if shooting multiple bullets
         {
             Vector3 bulletPos;
             if (bulletCount == 1)
@@ -131,13 +131,13 @@ public class playerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && invFrames < 1)
+        if (collision.gameObject.CompareTag("Enemy") && invFrames < 1) //Collission with enemy
         {
             health -= 1;
             invFrames = 30;
             textManager.GetComponent<textManager>().CounterRefresh();
             camController.shake = 15;
-        }else if (collision.gameObject.CompareTag("Bullet") && invFrames < 1)
+        }else if (collision.gameObject.CompareTag("Bullet") && invFrames < 1) //Collission with bullet (Destroys the bullet)
         {
             health -= 1;
             invFrames = 30;

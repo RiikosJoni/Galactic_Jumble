@@ -79,6 +79,48 @@ public class gameController : MonoBehaviour
                 StartCoroutine(enemySpawner.EnemySpawn());
             }
         }
+
+        if (Input.GetKeyDown("0")) //Debug stuff. Chacges difficulty
+        {
+            Debug.Log("Difficulty is now " + Difficulty + "!");
+            Difficulty = 0;
+        }
+
+        if (Input.GetKeyDown("1")) //Debug stuff. Chacges difficulty
+        {
+            Debug.Log("Difficulty is now " + Difficulty + "!");
+            Difficulty = 1;
+        }
+
+        if (Input.GetKeyDown("2")) //Debug stuff. Chacges difficulty
+        {
+            Debug.Log("Difficulty is now " + Difficulty + "!");
+            Difficulty = 2;
+        }
+
+        if (Input.GetKeyDown("3")) //Debug stuff. Chacges difficulty
+        {
+            Debug.Log("Difficulty is now " + Difficulty + "!");
+            Difficulty = 3;
+        }
+
+        if (Input.GetKeyDown("4")) //Debug stuff. Chacges difficulty
+        {
+            Debug.Log("Difficulty is now " + Difficulty + "!");
+            Difficulty = 4;
+        }
+
+        if (Input.GetKeyDown("5")) //Debug stuff. Chacges difficulty
+        {
+            Debug.Log("Difficulty is now " + Difficulty + "!");
+            Difficulty = 5;
+        }
+
+        if (Input.GetKeyDown("6")) //Debug stuff. Chacges difficulty
+        {
+            Debug.Log("Difficulty is now " + Difficulty + "!");
+            Difficulty = 6;
+        }
     }
 
     public void addWave()

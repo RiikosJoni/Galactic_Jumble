@@ -8,7 +8,7 @@ public class basicEnemyScript : MonoBehaviour
     //behaviors are handled in their own scripts.
 
     public int maxhealth = 3;
-    int health;
+    public int health;
     public int givenScore = 50;
 
     public bool UseBasicSprites = true; //Do you want to use the basic sprite system?

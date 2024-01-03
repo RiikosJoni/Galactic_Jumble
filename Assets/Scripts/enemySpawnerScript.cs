@@ -8,9 +8,9 @@ public class enemySpawnerScript : MonoBehaviour
     public gameController gameController;
 
     //Each entry in spawnlist corresponds to a wave. The numbers are the entries in enemylist (eq 0,0 = satellite_basic, satellite_basic)
-    //0 - Satellite, 1 - Satellite Bullet, 2 - Satellite Aim, 3 - Satellite Burst, 4 - Satellite Burst Aim, 5 - Satellite Line, 6 - Satellite Drop, 7 - Satellite Armored, 8 - Satellite Spike, 9 - Satellite Napalm
-    string[] enemyList = { "Satellite_Basic", "Satellite_Bullet", "Satellite_Aim", "Satellite_Burst", "Satellite_Burst_Aim", "Satellite_Line", "Satellite_Drop" };
-    string[] spawnList = { "0,0,0,0", "0b,0,0b", "0b,0,6bj,0,0k", "0m,6n,6or,6p,6q" };
+    //0 - Satellite, 1 - Satellite Bullet, 2 - Satellite Aim, 3 - Satellite Burst, 4 - Satellite Burst Aim, 5 - Satellite Line, 6 - Satellite Drop, 7 - Satellite Armored, 8 - Satellite Spike, 9 - Satellite Napalm, 10 - Zooper :)
+    string[] enemyList = { "Satellite_Basic", "Satellite_Bullet", "Satellite_Aim", "Satellite_Burst", "Satellite_Burst_Aim", "Satellite_Line", "Satellite_Drop", "Satellite_Armored", "Satellite_Spike", "Satellite_Napalm", "Zooper" };
+    string[] spawnList = { "0,0,0,0", "0b,0,0b", "0b,0,6bj,0,0k", "0m,6n,6or,6p,6q", "0m,1n,10or,2p,10k"};
 
     [SerializeField] public int EnemyCooldown = 100;
     [SerializeField] public int EnemyMultiplier = 1;
