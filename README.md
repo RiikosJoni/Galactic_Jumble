@@ -16,4 +16,4 @@ Grab your spaceship and prevent that!
 - Z - Shoot
 - X - Ability
 
-##NOTE: This version of Galactic jumble has been cancelled. I'm going to switch to Godot.
+##NOTE: The Godot version of this has been cancelled and I'm switching back to Unity.
