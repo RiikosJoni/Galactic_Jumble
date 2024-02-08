@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class basicBulletScript : MonoBehaviour
@@ -9,18 +10,19 @@ public class basicBulletScript : MonoBehaviour
 
     public GameObject explosionObject;
 
-    public float moveSpeed = 0.1f;
+    public float speed = 0.1f;
 
-    void Start()
+    private void Start()
     {
         gC = GameObject.Find("GameController");
         controlScript = gC.GetComponent<gameController>();
 
-        transform.position += new Vector3(0, -0.05f, 0.03f);
+        speed = speed * (controlScript.Difficulty * 0.5f);
     }
+
     void FixedUpdate()
     {
-        transform.position += transform.forward * moveSpeed;
+        transform.position += transform.right * speed;
 
         if (transform.position.y < -2 || transform.position.y > 2 || transform.position.x < -2 || transform.position.x > 2)
         {

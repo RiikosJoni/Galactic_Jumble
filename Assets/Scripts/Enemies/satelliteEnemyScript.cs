@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class satelliteEnemyScript : MonoBehaviour
 {
@@ -56,35 +57,83 @@ public class satelliteEnemyScript : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (satelliteType == "Drop") //Drops bullet with cooldown
+        switch (satelliteType)
         {
-            if (bulletTimer > BulletCooldown && transform.position.y < 1.25)
-            {
-                Instantiate(myBullet, transform.position, Quaternion.identity);
-                bulletTimer = 0;
-            }
-        }
-        else if (satelliteType == "Bullet") //Fires bullet at the player
-        {
-            if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
-            {
-                Quaternion bulletTargeting = Quaternion.LookRotation(pObj.transform.position - transform.position);
+            case "Drop"://Drops bullet with cooldown
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.25)
+                {
+                    Instantiate(myBullet, transform.position, Quaternion.identity);
+                    bulletTimer = 0;
+                }
+                break;
+            case "Bullet"://Fires bullet at the player
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                {
+                    Vector3 difference = pObj.transform.position - transform.position;
+                    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-                Instantiate(myBullet, transform.position, bulletTargeting);
-                bulletTimer = 0;
-            }
-        }
-        else if (satelliteType == "Bullet (Aim)") //Attepts to shoot the bullet where the player will be. Emphazising on the attemps-part
-        {
-            if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
-            {
-                Vector3 smartBulletAim = new Vector3(pObj.transform.position.x + pObj.GetComponent<playerController>().Xvelocity * 25, pObj.transform.position.y + pObj.GetComponent<playerController>().Yvelocity * 20, pObj.transform.position.z);
-                Quaternion bulletTargeting = Quaternion.LookRotation(smartBulletAim - transform.position);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
+                    bulletTimer = 0;
+                }
+                break;
+            case "Bullet (Aim)"://Attepts to shoot the bullet where the player will be. Emphazising on the attemps-part
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                {
+                    Vector3 difference = new Vector3(pObj.transform.position.x + pObj.GetComponent<playerController>().Xvelocity * (pObj.transform.position.x - transform.position.x) * 20 - transform.position.x, pObj.transform.position.y + pObj.GetComponent<playerController>().Yvelocity * (pObj.transform.position.x - transform.position.x) * 20 - transform.position.y, pObj.transform.position.z);
+                    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-                Instantiate(myBullet, transform.position, bulletTargeting);
-                bulletTimer = 0;
-            }
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
+                    bulletTimer = 0;
+                }
+                break;
+            case "Burst 3":
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                {
+                    Vector3 difference = pObj.transform.position - transform.position;
+                    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 15), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 15), transform);
+                    bulletTimer = 0;
+                }
+                break;
+            case "Burst 5":
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                {
+                    Vector3 difference = pObj.transform.position - transform.position;
+                    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 15), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 7), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 7), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 15), transform);
+                    bulletTimer = 0;
+                }
+                break;
+            case "Burst 3/2":
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                {
+                    Vector3 difference = pObj.transform.position - transform.position;
+                    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 10), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 10), transform);
+
+                    bulletTimer = 0;
+                }else if (bulletTimer > BulletCooldown - 7 && bulletTimer <= BulletCooldown - 6 && transform.position.y < 1.3)
+                {
+                    Vector3 difference = pObj.transform.position - transform.position;
+                    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 20), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 20), transform);
+                }
+                break;
         }
+
         bulletTimer++;
     }
 }
