@@ -9,10 +9,6 @@ public class playerController : MonoBehaviour
 
     public float Xvelocity = 0f;
     public float Yvelocity = 0f;
-    public float maxXVelocity = 0.1f;
-    public float maxYVelocity = 0.1f;
-    public float acceleration = 0.06f;
-    public float friction = 0.08f;
 
     public int maxHealth = 3;
     public int health = 3;
@@ -36,28 +32,6 @@ public class playerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Add friction
-        Xvelocity = Xvelocity * (1 - friction);
-        Yvelocity = Yvelocity * (1 - friction);
-
-        //Limiting movement speed
-        if (Xvelocity > maxXVelocity)
-        {
-            Xvelocity = maxXVelocity;
-        }
-        else if (Xvelocity < maxXVelocity * -1)
-        {
-            Xvelocity = -maxXVelocity;
-        }
-        if (Yvelocity > maxYVelocity)
-        {
-            Yvelocity = maxYVelocity;
-        }
-        else if (Yvelocity < maxYVelocity * -1)
-        {
-            Yvelocity = -maxYVelocity;
-        }
-
         //Limiting Position
         if (transform.position.y > 1.45 && Yvelocity > 0)
         {
@@ -82,19 +56,28 @@ public class playerController : MonoBehaviour
         //Input Management!!!! :D
         if (Input.GetKey("up"))
         {
-            Yvelocity += acceleration;
+            Yvelocity = 0.015f;
         }
-        if (Input.GetKey("down"))
+        else if (Input.GetKey("down"))
         {
-            Yvelocity -= acceleration;
+            Yvelocity = -0.015f;
         }
+        else
+        {
+            Yvelocity = 0;
+        }
+
         if (Input.GetKey("right"))
         {
-            Xvelocity += acceleration;
+            Xvelocity = 0.015f;
         }
-        if (Input.GetKey("left"))
+        else if (Input.GetKey("left"))
         {
-            Xvelocity -= acceleration;
+            Xvelocity = -0.015f;
+        }
+        else
+        {
+            Xvelocity = 0;
         }
 
         if (Input.GetKey("z") && bulletTimer > bulletRate)

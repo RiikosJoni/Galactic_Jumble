@@ -17,7 +17,7 @@ public class basicBulletScript : MonoBehaviour
         gC = GameObject.Find("GameController");
         controlScript = gC.GetComponent<gameController>();
 
-        speed = speed * (controlScript.Difficulty * 0.5f);
+        speed = speed * controlScript.Difficulty;
     }
 
     void FixedUpdate()

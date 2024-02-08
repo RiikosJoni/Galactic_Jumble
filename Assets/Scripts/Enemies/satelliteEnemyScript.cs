@@ -60,66 +60,66 @@ public class satelliteEnemyScript : MonoBehaviour
         switch (satelliteType)
         {
             case "Drop"://Drops bullet with cooldown
-                if (bulletTimer > BulletCooldown && transform.position.y < 1.25)
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.35)
                 {
                     Instantiate(myBullet, transform.position, Quaternion.identity);
                     bulletTimer = 0;
                 }
                 break;
             case "Bullet"://Fires bullet at the player
-                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.4)
                 {
                     Vector3 difference = pObj.transform.position - transform.position;
                     float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
                     bulletTimer = 0;
                 }
                 break;
             case "Bullet (Aim)"://Attepts to shoot the bullet where the player will be. Emphazising on the attemps-part
-                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.4)
                 {
                     Vector3 difference = new Vector3(pObj.transform.position.x + pObj.GetComponent<playerController>().Xvelocity * (pObj.transform.position.x - transform.position.x) * 20 - transform.position.x, pObj.transform.position.y + pObj.GetComponent<playerController>().Yvelocity * (pObj.transform.position.x - transform.position.x) * 20 - transform.position.y, pObj.transform.position.z);
                     float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
                     bulletTimer = 0;
                 }
                 break;
             case "Burst 3":
-                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.4)
                 {
                     Vector3 difference = pObj.transform.position - transform.position;
                     float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 15), transform);
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 15), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 15));
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 15));
                     bulletTimer = 0;
                 }
                 break;
             case "Burst 5":
-                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.4)
                 {
                     Vector3 difference = pObj.transform.position - transform.position;
                     float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 15), transform);
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 7), transform);
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 7), transform);
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 15), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 15));
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 7));
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 7));
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 15));
                     bulletTimer = 0;
                 }
                 break;
             case "Burst 3/2":
-                if (bulletTimer > BulletCooldown && transform.position.y < 1.3)
+                if (bulletTimer > BulletCooldown && transform.position.y < 1.4)
                 {
                     Vector3 difference = pObj.transform.position - transform.position;
                     float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 10), transform);
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 10), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 10));
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 10));
 
                     bulletTimer = 0;
                 }else if (bulletTimer > BulletCooldown - 7 && bulletTimer <= BulletCooldown - 6 && transform.position.y < 1.3)
@@ -127,13 +127,16 @@ public class satelliteEnemyScript : MonoBehaviour
                     Vector3 difference = pObj.transform.position - transform.position;
                     float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 20), transform);
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ), transform);
-                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 20), transform);
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ + 20));
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ));
+                    Instantiate(myBullet, transform.position, Quaternion.Euler(0.0f, 0.0f, rotationZ - 20));
                 }
                 break;
         }
 
-        bulletTimer++;
+        if (transform.position.y < 1.6)
+        {
+            bulletTimer++;
+        }
     }
 }

@@ -30,7 +30,7 @@ public class playerBulletScript : MonoBehaviour
             transform.position += new Vector3(0, bulletSpeed / 20, 0);
         }
 
-        if (transform.position.y > 2)
+        if (transform.position.y > 2f)
         {
             Destroy(gameObject);
         }
